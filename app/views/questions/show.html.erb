@@ -1,0 +1,26 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Question:</strong>
+  <%= @question.title %>
+  <br>
+  <strong>Description:</strong>
+  <%= @question.description %>
+
+</p>
+
+<p>
+<% @question.answers.order(created_at: :desc).each do |a| %>
+  <strong><%= a.title %></strong>
+  <br/>
+  <%= a.description %>
+  <br/>
+  <br/>
+<% end %>
+</p>
+
+<%= link_to 'New Answer', new_question_answer_path(@question) %>
+<br>
+<%= link_to 'Edit', edit_question_path(@question) %> |
+<%= link_to 'Back', questions_path %>|
+<%= link_to 'Destroy', @question, method: :delete, data: { confirm: 'Are you sure?' } %>
